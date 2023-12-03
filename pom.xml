@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.app.conatus</groupId>
 	<artifactId>conatus-service-commons</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<name>conatus-service-commons</name>
 	<description>Biblioteca responsavel por centralizar serviços comuns entre os microserviços conatus.</description>
 	<properties>
@@ -15,8 +15,14 @@
 		<dependency>
 			<groupId>br.com.app.conatus</groupId>
 			<artifactId>conatus-commons</artifactId>
-			<version>1.0.2</version>
+			<version>1.1.0</version>
 		</dependency>
+			
+		<dependency>
+	      <groupId>org.flywaydb</groupId>
+	      <artifactId>flyway-core</artifactId>
+	      <version>9.16.3</version>
+	    </dependency>
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -46,6 +52,18 @@
 
 	<build>
 		<plugins>
+			<plugin>
+			    <groupId>org.flywaydb</groupId>
+			    <artifactId>flyway-maven-plugin</artifactId>
+			    <version>9.16.3</version>
+			    <configuration>
+			        <user>databaseUser</user>
+			        <password>databasePassword</password>
+			        <schemas>
+			            <schema>schemaName</schema>
+			        </schemas>
+			    </configuration>
+			</plugin>
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
