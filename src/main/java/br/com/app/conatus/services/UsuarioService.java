@@ -6,6 +6,7 @@ import br.com.app.conatus.commons.entities.PessoaFisicaEntity;
 import br.com.app.conatus.commons.entities.UsuarioEntity;
 import br.com.app.conatus.commons.entities.factory.UsuarioEntityFactory;
 import br.com.app.conatus.commons.enums.CodigoDominio;
+import br.com.app.conatus.commons.exceptions.NaoEncontradoException;
 import br.com.app.conatus.commons.model.request.UsuarioRecordRequest;
 import br.com.app.conatus.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,11 @@ public class UsuarioService {
 		return usuarioRepository.save(UsuarioEntityFactory.converterParaEntity(dadosUsuario, pf,
 				autenticacaoService.gerarHashSenha(dadosUsuario.senha()),
 				dominioService.recuperarPorCodigo(CodigoDominio.STATUS_ATIVO)));
+	}
+	
+	public UsuarioEntity recuperarUsuarioPorId(Long id) {
+		return usuarioRepository.findById(id).orElseThrow(
+				() -> new NaoEncontradoException("Não foi possível encontrar um usuário com id: %d".formatted(id)));
 	}
 	
 }

@@ -24,6 +24,10 @@ public class CurrentTenantIdentifierResolverImpl implements CurrentTenantIdentif
 		tenant.remove();
 	}
 	
+	public static String getCurrencyTenant() {
+		return tenant.get();
+	}
+	
 	@Override
     public String resolveCurrentTenantIdentifier() {
 		if (tenant.get() == null) {
