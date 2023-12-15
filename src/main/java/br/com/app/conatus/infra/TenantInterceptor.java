@@ -1,5 +1,7 @@
 package br.com.app.conatus.infra;
 
+import java.util.Objects;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -16,7 +18,13 @@ public class TenantInterceptor implements HandlerInterceptor, WebMvcConfigurer {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
-		CurrentTenantIdentifierResolverImpl.setCurrencyTenant(request.getHeader("tenant"));
+		String tenant = request.getHeader("tenant");
+		
+		if (Objects.isNull(tenant)) {
+			tenant = "a7efdd20-e12b-48fe-81fe-0b109db5da95";
+		}
+		
+		CurrentTenantIdentifierResolverImpl.setCurrencyTenant(tenant);
 		
 		return true;
 	}
