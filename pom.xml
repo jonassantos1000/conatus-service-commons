@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.app.conatus</groupId>
 	<artifactId>conatus-service-commons</artifactId>
-	<version>1.1.4</version>
+	<version>1.2.0</version>
 	<name>conatus-service-commons</name>
 	<description>Biblioteca responsavel por centralizar serviços comuns entre os microserviços conatus.</description>
 	<properties>
@@ -15,7 +15,7 @@
 		<dependency>
 			<groupId>br.com.app.conatus</groupId>
 			<artifactId>conatus-commons</artifactId>
-			<version>1.1.2</version>
+			<version>1.2.0</version>
 		</dependency>
 			
 		<dependency>
